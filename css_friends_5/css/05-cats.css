@@ -1,0 +1,43 @@
+/* PHASE 5: Cats */
+.content-header{
+    width: 900px;
+    height: 200px;
+    background: url("../images/cats.jpg");
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.cat-name{
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    font-size: 40px;
+
+}
+
+.cat-name h2 {
+
+    color: white;
+    text-shadow: 0px 0px 5px black;;
+   
+}
+
+.friend-button {
+    width: 15%;
+    
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.friend-button button{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
