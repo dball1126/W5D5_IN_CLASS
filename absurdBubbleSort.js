@@ -6,7 +6,7 @@ const reader = readline.createInterface({
 });
 
 function askIfGreaterThan(ele1, ele2, callback) {
-    reader.question(`Is ${ele1} greater than ${ele2}?`, function(answer){
+    reader.question(`Is ${ele1} greater than ${ele2}? `, function(answer){
         if (answer === "yes") {
             callback(true);
         } else if (answer === "no") {
@@ -18,22 +18,24 @@ function askIfGreaterThan(ele1, ele2, callback) {
 function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
     if (i === (arr.length - 1)) {
         outerBubbleSortLoop(madeAnySwaps);
-        // console.log(outerBubbleSortLoop);
-    } else{
-        askIfGreaterThan(arr[i], arr[i+1],(isGreaterThan)=>{
+       
+    } else {
+        askIfGreaterThan(arr[i], arr[i+1],(isGreaterThan) => {
             if (isGreaterThan === true){ 
                 [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
                 madeAnySwaps = true;
             }
-        });
-        innerBubbleSortLoop(arr, ++i, madeAnySwaps, outerBubbleSortLoop);
+            innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop);
+        }); // FIX: we did not have the innerBuubleSortLoop inside of the askIfGreaterThan block
+        //Why does it wait for input when it is in the askIfGreaterThanBlock
+    //And does not wait for input when it is outside of the askIfGreaterThan block on line 32
+        
     }
      
 }
 
 function absurdBubbleSort(arr, sortCompletionCallback) {
     let madeAnySwaps=true;
-    outerBubbleSortLoop(madeAnySwaps);
     
     function outerBubbleSortLoop(madeAnySwaps) {
         if (madeAnySwaps) {
@@ -43,7 +45,10 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
             sortCompletionCallback(arr);
         }
     }
+
+    outerBubbleSortLoop(madeAnySwaps);
 }
+
 
 absurdBubbleSort([3, 2, 1], function (arr2) {
     console.log("Sorted array: " + JSON.stringify(arr2));
